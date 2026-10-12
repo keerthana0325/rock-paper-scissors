@@ -7,106 +7,75 @@ function getComputerChoice(num){
     return Math.floor(Math.random()*num)
 }
 
-console.log(getComputerChoice(3))
+let computerChoice = getComputerChoice(3)
+console.log("computerchoice is " +computerChoice)
+if (computerChoice == 0){
+    computerChoice = "rock"
+}
+else if (computerChoice == 1){
+    computerChoice = "paper"
+}
+else{
+    computerChoice = "scissors"
+}
+
+console.log("After assiging " +computerChoice)
 
 function getHumanChoice(choiceNum){
     return choiceNum
 }
-let choice = prompt("Enter rock or paper or scissors");
-console.log("The choice is : " +getHumanChoice(choice))
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
+let humanchoice = prompt("Enter rock or paper or scissors");
+humanchoice=humanchoice.toLowerCase()
+console.log("The humanchoice is : " +humanchoice)
 
-
-function playroundsHUM(humanSelection,computerSelection){
-    if (computerSelection == 0)
-    {
-        computerSelection = "rock";
-    }
-    else if (computerSelection == 1)
-    {
-        computerSelection = "paper";
-    }else{
-        computerSelection = "scissors"
-    }
-humanSelection = humanSelection.toLowerCase();
-
-    if (humanSelection == computerSelection){
-        console.log("a tie")
-    }
-    else if (humanSelection === "rock" && computerSelection ==="scissors"){
-        humanScore= humanScore + 1
-        console.log("Human gains 1 point")
-    }
-
-    else if (humanSelection=== "paper" && computerSelection==="rock"){
-        humanScore = humanScore + 1
-        console.log("Human gains 1 point")
-    }
-
-    else if(humanSelection === "scissors" && computerSelection==="paper"){
-        humanScore = humanScore+1
-        console.log("Human gains 1 point")
-    }
-    else{
-        playroundsCOMP(humanSelection,computerSelection)
-    }
-    return humanScore
-
-}
-
-function playroundsCOMP(humanSelection,computerSelection){
-    if (computerSelection == 0)
-    {
-        computerSelection = "rock";
-    }
-    else if (computerSelection == 1)
-    {
-        computerSelection = "paper";
-    }else{
-        computerSelection = "scissors"
-    }
-humanSelection = humanSelection.toLowerCase();
-
-    if (humanSelection === "rock" && computerSelection ==="paper"){
-        computerScore= computerScore + 1
-        console.log("Computer gains 1 point")
-    }
-
-    else if (humanSelection=== "paper" && computerSelection==="scissor"){
-        computerScore= computerScore + 1
-        console.log("Computer gains 1 point")
-    }
-
-    else if(humanSelection === "scissors" && computerSelection==="rock"){
-        computerScore= computerScore + 1
-        console.log("Computer gains 1 point")
-    }
-    else{
-        console.log("Invalid");
-    }
-   return computerScore
-}
-round = 0 
-function playgame(playroundsHUM,playroundsCOMP){
-    if (round>5){
-        console.log("END")
-    } 
-    else if(round<=5){
-        playroundsHUM()
-        playroundsCOMP()
-    }
-
-    if (computerScore > humanScore) {
-        console.log("Computer Wins round " +round)
-    }
-    else if (humanScore > computerScore){
-        console.log("Human Wins round " +round)
-    }
-    else{
+function playround (computerChoice,humanchoice){
+    if (computerChoice==humanchoice){
         console.log("It's a tie")
     }
+    else if(computerChoice==="rock"  && humanchoice==="paper"){
+        console.log("You win " +humanchoice + " beats " +computerChoice)
+        humanScore = humanScore+1
+    }
+      else if(computerChoice==="paper"  && humanchoice==="rock"){
+        console.log("You win " +computerChoice + " beats " +humanchoice)
+        computerScore = computerScore+1
+    }
+      else if(computerChoice==="scissors"  && humanchoice==="paper"){
+        console.log("You win " +computerChoice + " beats " +humanchoice)
+        computerScore = computerScore+1
+    }
+      else if(computerChoice==="paper"  && humanchoice==="scissors"){
+        console.log("You win " +humanchoice + " beats " +computerChoice)
+        humanScore = humanScore+1
+    }
+      else if(computerChoice==="scissors"  && humanchoice==="rock"){
+       console.log("You win " +humanchoice + " beats " +computerChoice)
+        humanScore = humanScore+1
+    }
+      else if(computerChoice==="rock"  && humanchoice==="scissors"){
+        console.log("You win " +computerChoice + " beats " +humanchoice)
+        computerScore = computerScore+1
+    }
+      else {
+        console.log("Inavalid")
+    }
+}
 
-    
-} 
+playround(computerChoice,humanchoice)
+
+
+function playgame(humanScore,computerScore){
+    if (humanScore>computerScore){
+        console.log("Human won the round")
+    }
+    else if (computerScore>humanScore){
+        console.log("Computer won")
+    }
+    else{
+        console.log("Tie")
+    }
+   
+}
+
+playgame(humanScore,computerScore)
